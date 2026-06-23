@@ -26,7 +26,8 @@ export function getCurrentUser() {
 }
 
 // ─── Base fetch ───────────────────────────────────────────────────
-const BASE = 'http://localhost:8080';
+// const BASE = 'https://tracksphere-rqr5.onrender.com';
+const BASE = process.env.REACT_APP_API_BASE || 'http://localhost:8080';
 
 async function req(method, path, body) {
   const token = getToken();

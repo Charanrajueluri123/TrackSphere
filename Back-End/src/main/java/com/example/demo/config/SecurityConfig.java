@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
@@ -63,7 +64,10 @@ public class SecurityConfig {
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration=new CorsConfiguration();
 		
-		configuration.addAllowedOrigin("http://localhost:3000");
+		configuration.setAllowedOrigins(List.of(
+        	"http://localhost:3000",
+        	"https://your-frontend.onrender.com"
+    		));
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedHeader("*");
 		configuration.setAllowCredentials(true);
