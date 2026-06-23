@@ -5,19 +5,21 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 
 import org.springframework.stereotype.Component;
-
+import org.springframework.beans.factory.annotation.Value;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
-	private static final String SECRET = "mysecretkeymysecretkeymysecretkeymysecretkey";
-	private static final long EXPIRATION = 1000 * 60 * 60 * 24;
+
+	@Value("${jwt.secret}")
+	private String SECRET;
+	private static long EXPIRATION = 1000 * 60 * 60 * 24;
 
 	public String generateToken(String email,String role) {
 		return Jwts.builder().subject(email).claim("role", role).issuedAt(new Date())
-				.expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+				.expiration(new Date(System.currentTimeMillis() + EXPIRATION))
 				.signWith(Keys.hmacShaKeyFor(SECRET.getBytes())).compact();
 	}
 
