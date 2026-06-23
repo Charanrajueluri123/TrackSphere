@@ -66,7 +66,7 @@ public class SecurityConfig {
 		
 		configuration.setAllowedOrigins(List.of(
         	"http://localhost:3000",
-        	"https://your-frontend.onrender.com"
+        	"https://front-end-z6qf.onrender.com"
     		));
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedHeader("*");
