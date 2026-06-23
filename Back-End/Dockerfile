@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
@@ -8,4 +8,4 @@ RUN chmod +x mvnw
 
 RUN ./mvnw clean package -DskipTests
 
-CMD ["java","-jar","target/TrackSphere-0.0.1-SNAPSHOT.jar"]
+CMD ["sh","-c","java -jar target/*.jar"]s
