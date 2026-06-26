@@ -16,7 +16,7 @@ public class EmailService {
     private final JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
-    private final String sender;
+    private String sender;
 
     public void sendBugAssignedMail(User developer, Bug bug) {
         SimpleMailMessage mail = new SimpleMailMessage();
