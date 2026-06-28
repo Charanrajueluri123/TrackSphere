@@ -53,18 +53,18 @@ public class BugService {
 		return bugrepo.save(bug);
 	}
 
-	// public Bug assignBug(int bugId, int developerId) {
-	// 	Bug bug = bugrepo.findById(bugId).orElseThrow(() -> new RuntimeException("Bug Not Found"));
-	// 	User developer = userRepo.findById(developerId).orElseThrow(() -> new RuntimeException("User Not Found"));
+	public Bug assignBug(int bugId, int developerId) {
+		Bug bug = bugrepo.findById(bugId).orElseThrow(() -> new RuntimeException("Bug Not Found"));
+		User developer = userRepo.findById(developerId).orElseThrow(() -> new RuntimeException("User Not Found"));
 
-	// 	if (developer.getRole() != Role.DEVELOPER) {
-	// 		throw new RuntimeException("Only Developers can be assigned bugs");
-	// 	}
+		if (developer.getRole() != Role.DEVELOPER) {
+			throw new RuntimeException("Only Developers can be assigned bugs");
+		}
 
-	// 	bug.setAssignedTo(developer);
+		bug.setAssignedTo(developer);
 
-	// 	return bugrepo.save(bug);
-	// }
+		return bugrepo.save(bug);
+	}
 
 	public Bug updateStatus(int bugId, BugStatus status) {
 		Bug bug = bugrepo.findById(bugId).orElseThrow(() -> new RuntimeException("Bug Not Found"));
@@ -150,31 +150,31 @@ public class BugService {
 	// }
 
 
-	public Bug assignBug(int bugId, int developerId) {
+// 	public Bug assignBug(int bugId, int developerId) {
 
-    Bug bug = bugrepo.findById(bugId)
-            .orElseThrow(() -> new RuntimeException("Bug Not Found"));
+//     Bug bug = bugrepo.findById(bugId)
+//             .orElseThrow(() -> new RuntimeException("Bug Not Found"));
 
-    User developer = userRepo.findById(developerId)
-            .orElseThrow(() -> new RuntimeException("User Not Found"));
+//     User developer = userRepo.findById(developerId)
+//             .orElseThrow(() -> new RuntimeException("User Not Found"));
 
-    if (developer.getRole() != Role.DEVELOPER) {
-        throw new RuntimeException("Only Developers can be assigned bugs");
-    }
+//     if (developer.getRole() != Role.DEVELOPER) {
+//         throw new RuntimeException("Only Developers can be assigned bugs");
+//     }
 
-    // Try sending email first
-    try {
-        emailService.sendBugAssignedMail(developer, bug);
-    } catch (Exception e) {
-        throw new RuntimeException("Bug not assigned because email sending failed: "
-                + e.getMessage());
-    }
+//     // Try sending email first
+//     try {
+//         emailService.sendBugAssignedMail(developer, bug);
+//     } catch (Exception e) {
+//         throw new RuntimeException("Bug not assigned because email sending failed: "
+//                 + e.getMessage());
+//     }
 
-    // Only if email succeeds
-    bug.setAssignedTo(developer);
+//     // Only if email succeeds
+//     bug.setAssignedTo(developer);
 
-    return bugrepo.save(bug);
-}
+//     return bugrepo.save(bug);
+// }
 
 	
 }
